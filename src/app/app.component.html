@@ -1,21 +1,117 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <h1>Our first Project using Angular7</h1>
+        </div>
+        <div class="col-md-2">
+            <img src="assets/Moi.jpg" height="100" width="100" />
+        </div>
+    </div>
+    <div *ngIf="form1">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group" cdkDrag>
+                        <label class="control-label">Name: </label>
+                        <input id="name" type="text" [(ngModel)]="newData.name" class="form-control text-danger" type="text" />
+                    </div>
+                </div>
 
-<router-outlet></router-outlet>
+
+
+                <div class="col-md-2">
+                    <label class="control-label">Email: </label>
+                    <input type="text" [(ngModel)]="newData.email" class="form-control text-danger" type="text" />
+                </div>
+
+
+                <div class="col-md-2">
+                    <label class="control-label">Coutry: </label>
+                    <input type="text" [(ngModel)]="newData.country" class="form-control text-danger" type="text" />
+                </div>
+
+                <div class="col-md-2">
+                    <label class="control-label">Coutry: </label>
+                    <input type="text" [(ngModel)]="newData.CTN" class="form-control text-danger" type="text" />
+                </div>
+            </div>
+
+            <button type="submit" [ngClass]="valid?'btn btn-primary':'btn btn-success'" (click)="ajout()" [disabled]="">AddUser</button>
+
+        </div>
+    </div>
+    <div *ngIf="!form1">
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group" cdkDrag>
+                        <label class="control-label">Name: </label>
+                        <input id="name" type="text" [(ngModel)]="newData.name" class="form-control text-danger" type="text" />
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-2">
+                    <label class="control-label">Email: </label>
+                    <input type="text" [(ngModel)]="newData.email" class="form-control text-danger" type="text" />
+                </div>
+
+
+                <div class="col-md-2">
+                    <label class="control-label">Coutry: </label>
+                    <input type="text" [(ngModel)]="newData.country" class="form-control text-danger" type="text" />
+                </div>
+
+                <div class="col-md-2">
+                    <label class="control-label">Coutry: </label>
+                    <input type="text" [(ngModel)]="newData.CTN" class="form-control text-danger" type="text" />
+                </div>
+            </div>
+            <button type="submit" [ngClass]="valid?'btn btn-primary':'btn btn-success'" (click)="Down()" [disabled]="">UpUser</button>
+
+        </div>
+    </div>
+
+    <br><br>
+    <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" datatable="language">
+
+        <thead class="theme-dark-blue">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Flag</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data">
+                <td>{{d.name}}</td>
+                <td>{{d.email}}</td>
+                <td>{{d.country}}</td>
+                <td><img src="assets/ctn/{{d.CTN}}.png"></td>
+                <td>
+                    <button class="pull-right btn btn-sm btn-warning" (click)="delete(d)">Delete</button>
+                </td>
+                <td>
+                    <button class="pull-right btn btn-sm btn-danger" (click)="update(d)">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div style="text-align:center">
+    <h1>
+        Angular Toastr:
+    </h1>
+</div> -->
+<!-- <button (click)="showSuccess()">Open Angular Toastr Success</button>
+<br/><br/>
+<button (click)="showError()">Open Angular Toastr Error</button>
+<br/><br/>
+<button (click)="messageShow()">Message</button> -->
